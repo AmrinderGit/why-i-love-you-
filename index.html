@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Make My World Brighter ✨</title>
+    <style>
+        :root {
+            --color-pink-50: #fff1f2;
+            --color-pink-100: #ffe4e6;
+            --color-pink-400: #fb7185;
+            --color-pink-500: #f43f5e;
+            --color-purple-400: #c084fc;
+            --color-purple-500: #a855f7;
+            --color-yellow-300: #fde047;
+            --color-blue-400: #60a5fa;
+            --color-rose-500: #f43f5e;
+            --shadow-glow: 0 0 20px rgba(244, 63, 94, 0.3);
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Floating hearts animation */
+        .heart-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            font-size: 20px;
+            animation: float 8s infinite;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 10;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--color-rose-500);
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+
+        .reason-card {
+            background: linear-gradient(135deg, var(--color-pink-50) 0%, var(--color-pink-100) 100%);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 25px 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(244, 63, 94, 0.2);
+            transform: scale(0.95);
+            opacity: 0;
+            animation: popIn 0.5s ease-out forwards;
+        }
+
+        @keyframes popIn {
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .reason-card .number {
+            font-size: 3em;
+            color: var(--color-rose-500);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .reason-card .text {
+            font-size: 1.3em;
+            color: #333;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-pink-500) 0%, var(--color-purple-500) 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(244, 63, 94, 0.4);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--color-purple-400) 0%, var(--color-blue-400) 100%);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(168, 85, 247, 0.4);
+        }
+
+        .btn-special {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #333;
+        }
+
+        .btn-special:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .message-box {
+            background: linear-gradient(135deg, #fff 0%, #fef3c7 100%);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 3px solid var(--color-yellow-300);
+            text-align: center;
+            animation: popIn 0.5s ease-out;
+        }
+
+        .message-box p {
+            font-size: 1.2em;
+            color: #333;
+            line-height: 1.8;
+            margin: 10px 0;
+        }
+
+        .emoji {
+            font-size: 2em;
+            display: inline-block;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .compliment-display {
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: popIn 0.5s ease-out;
+        }
+
+        .memory-card {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: popIn 0.5s ease-out;
+        }
+
+        .memory-card h3 {
+            color: #c2410c;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .memory-card p {
+            color: #333;
+            font-size: 1.1em;
+            line-height: 1.7;
+        }
+
+        .counter {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.1em;
+            color: #666;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .reason-card .number {
+                font-size: 2.5em;
+            }
+
+            .reason-card .text {
+                font-size: 1.1em;
+            }
+
+            .btn {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="heart-container" id="heartContainer"></div>
+
+    <div class="container">
+        <h1>You're My Sunshine ☀️</h1>
+        <p class="subtitle">Every reason why you're amazing!</p>
+
+        <div id="reasonDisplay">
+            <div class="reason-card">
+                <div class="number">💝</div>
+                <div class="text">Click below to discover all the reasons I love you!</div>
+            </div>
+        </div>
+
+        <div class="counter" id="counter"></div>
+
+        <div class="button-group">
+            <button class="btn btn-primary" onclick="showNextReason()">
+                <span>❤️ Next Reason</span>
+            </button>
+            <button class="btn btn-secondary" onclick="showCompliment()">
+                <span>✨ Random Compliment</span>
+            </button>
+            <button class="btn btn-special" onclick="showMemory()">
+                <span>🌟 Our Memories</span>
+            </button>
+        </div>
+
+        <div id="extraContent"></div>
+    </div>
+
+    <script>
+        const reasons = [
+            "Your smile lights up my entire world and makes everything better! 😊",
+            "You're the kindest, most caring person I've ever met 💕",
+            "Your laugh is my favorite sound in the entire universe 🎵",
+            "You make me want to be a better person every single day 🌟",
+            "Your hugs feel like home and I never want to let go 🤗",
+            "You understand me in ways no one else ever has 💭",
+            "Your strength and courage inspire me constantly 💪",
+            "You're beautiful inside and out, in every possible way 🌺",
+            "The way you care about others is absolutely amazing 🌈",
+            "You make ordinary moments feel extraordinary ✨",
+            "Your presence makes everything more fun and meaningful 🎉",
+            "You're my best friend and my greatest adventure 🚀",
+            "Your heart is pure gold and shines so brightly 💛",
+            "You support my dreams like no one else ever could 🌠",
+            "Your intelligence and creativity blow me away every day 🧠",
+            "You make me laugh even when I thought I couldn't smile 😄",
+            "Your compassion for others is truly beautiful to witness 🕊️",
+            "You're patient with me even when I don't deserve it 🙏",
+            "Your eyes sparkle with life and joy that's contagious ✨",
+            "You make every single day brighter just by existing 🌞",
+            "Your love makes me feel like the luckiest person alive 🍀"
+        ];
+
+        const compliments = [
+            "You're absolutely GORGEOUS! 😍",
+            "Your energy is magnetic and draws everyone to you! ⚡",
+            "You have the most beautiful soul! 💖",
+            "You're incredibly talented at everything you do! 🎨",
+            "Your style is impeccable and uniquely YOU! 👗",
+            "You light up every room you enter! 💫",
+            "You're the definition of perfection! 👑",
+            "Your personality is absolutely captivating! 🌟",
+            "You're an absolute queen! 👸",
+            "Your smile could melt a thousand hearts! 💕",
+            "You're smarter than you give yourself credit for! 🧠",
+            "You're one of a kind and irreplaceable! 💎",
+            "You have the best taste in everything! 🎭",
+            "You're stronger than you know! 💪",
+            "You make the world a better place! 🌍"
+        ];
+
+        const memories = [
+            "Remember that time we laughed until our stomachs hurt? Those are the moments I treasure most! 😂💕",
+            "Every moment with you becomes a cherished memory, even the simple ones like watching movies together! 🎬❤️",
+            "I love how we can talk about anything and everything for hours without getting bored! 🗨️✨",
+            "The first time you smiled at me, I knew you were special. That memory is forever in my heart! 💝",
+            "All our inside jokes make me smile even when we're apart. We have our own special language! 😄",
+            "I love how comfortable we are together, we can be ourselves completely! 🌈",
+            "Every adventure with you is my favorite adventure, big or small! 🗺️💫",
+            "Remember when we stayed up all night talking? I'd do that every night if I could! 🌙⭐"
+        ];
+
+        let currentReasonIndex = 0;
+        let complimentShown = false;
+        let memoryShown = false;
+
+        function showNextReason() {
+            const reasonDisplay = document.getElementById('reasonDisplay');
+            const counter = document.getElementById('counter');
+            
+            reasonDisplay.innerHTML = `
+                <div class="reason-card">
+                    <div class="number">${currentReasonIndex + 1}</div>
+                    <div class="text">${reasons[currentReasonIndex]}</div>
+                </div>
+            `;
+
+            currentReasonIndex++;
+            
+            if (currentReasonIndex < reasons.length) {
+                counter.textContent = `${currentReasonIndex} of ${reasons.length} reasons shown`;
+            } else {
+                counter.innerHTML = `<strong>You've seen all ${reasons.length} reasons, but there are infinitely more! ♾️💕</strong>`;
+                currentReasonIndex = 0;
+            }
+
+            createHeart();
+        }
+
+        function showCompliment() {
+            const extraContent = document.getElementById('extraContent');
+            const randomCompliment = compliments[Math.floor(Math.random() * compliments.length)];
+            
+            if (complimentShown) {
+                extraContent.innerHTML = '';
+                complimentShown = false;
+            }
+
+            extraContent.innerHTML = `
+                <div class="compliment-display">
+                    <span class="emoji">✨</span>
+                    ${randomCompliment}
+                    <span class="emoji">✨</span>
+                </div>
+            `;
+            complimentShown = true;
+            createHearts(3);
+        }
+
+        function showMemory() {
+            const extraContent = document.getElementById('extraContent');
+            const randomMemory = memories[Math.floor(Math.random() * memories.length)];
+            
+            if (memoryShown) {
+                extraContent.innerHTML = '';
+                memoryShown = false;
+            }
+
+            extraContent.innerHTML = `
+                <div class="memory-card">
+                    <h3>💭 A Beautiful Memory</h3>
+                    <p>${randomMemory}</p>
+                </div>
+            `;
+            memoryShown = true;
+            createHearts(5);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            
+            document.getElementById('heartContainer').appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+
+        function createHearts(count) {
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => createHeart(), i * 200);
+            }
+        }
+
+        // Create initial hearts
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                createHeart();
+            }
+        }, 2000);
+
+        // Initial hearts on load
+        window.addEventListener('load', () => {
+            createHearts(5);
+        });
+    </script>
+</body>
+</html>
